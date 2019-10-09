@@ -18,7 +18,7 @@
  * Short answer question type version information.
  *
  * @package    qtype
- * @subpackage shortanswer
+ * @subpackage flashcards
  * @copyright  2019 onwards Angela Baier {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
