@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Short answer question type version information.
+ * Flashcard question type version information.
  *
  * @package    qtype
  * @subpackage flashcards
