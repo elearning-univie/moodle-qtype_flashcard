@@ -26,7 +26,7 @@
 $string['clozeaid'] = 'Enter missing word';
 $string['correctansweris'] = 'The correct answer is: {$a}';
 $string['correctanswersare'] = 'The correct answers are: {$a}';
-$string['pluginname'] = 'Multiple choice';
+$string['pluginname'] = 'Flashcard';
 $string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the answer. After that he decides if he was right or not.';
 $string['pluginname_link'] = 'question/type/flashcard';
 $string['pluginnameadding'] = 'Adding a Flashcard question';

@@ -115,31 +115,19 @@ class qtype_flashcard extends question_type {
     }
 
     public function get_possible_responses($questiondata) {
-        $questiondata->id => array(
-            0 => new question_possible_response(get_string('false', 'qtype_truefalse'),
-                $questiondata->options->answers[
-                    $questiondata->options->falseanswer]->fraction),
-            1 => new question_possible_response(get_string('true', 'qtype_truefalse'),
-                $questiondata->options->answers[
-                    $questiondata->options->trueanswer]->fraction),
-            null => question_possible_response::no_response()
+        return array(
+            $questiondata->id => array(
+                0 => new question_possible_response(get_string('false', 'qtype_flashcard'),
+                    $questiondata->options->answers[
+                        $questiondata->options->falseanswer]->fraction),
+                1 => new question_possible_response(get_string('true', 'qtype_flashcard'),
+                    $questiondata->options->answers[
+                        $questiondata->options->trueanswer]->fraction),
+                null => question_possible_response::no_response()
+            )
         );
     }
 
-    /**
-     * @return array of the numbering styles supported. For each one, there
-     *      should be a lang string answernumberingxxx in teh qtype_multichoice
-     *      language file, and a case in the switch statement in number_in_style,
-     *      and it should be listed in the definition of this column in install.xml.
-     */
-    public static function get_numbering_styles() {
-        $styles = array();
-        foreach (array('abc', 'ABCD', '123', 'iii', 'IIII', 'none') as $numberingoption) {
-            $styles[$numberingoption] =
-                    get_string('answernumbering' . $numberingoption, 'qtype_multichoice');
-        }
-        return $styles;
-    }
 
     public function move_files($questionid, $oldcontextid, $newcontextid) {
         parent::move_files($questionid, $oldcontextid, $newcontextid);

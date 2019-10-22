@@ -41,11 +41,6 @@ class qtype_flashcard_edit_form extends question_edit_form {
      */
     protected function definition_inner($mform) {
 
-
-        $mform->addElement('select', 'answernumbering',
-                get_string('answernumbering', 'qtype_flashcard'),
-            qtype_flashcard::get_numbering_styles());
-        $mform->setDefault('answernumbering', get_config('qtype_flashcard', 'answernumbering'));
 //TODO
         $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_flashcard', '{no}'),
                 question_bank::fraction_options_full(), 1);
