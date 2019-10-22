@@ -35,7 +35,7 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-abstract class qtype_flashcard extends question_graded_automatically {
+abstract class qtype_flashcard_question extends question_graded_automatically {
     const LAYOUT_DROPDOWN = 0;
     const LAYOUT_VERTICAL = 1;
     const LAYOUT_HORIZONTAL = 2;
@@ -73,10 +73,6 @@ abstract class qtype_flashcard extends question_graded_automatically {
         $question = $this->html_to_text($this->questiontext, $this->questiontextformat);
         return $question;
     }
-
-    public abstract function get_response(question_attempt $qa);
-
-    public abstract function is_choice_selected($response, $value);
 
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
         if ($component == 'question' && in_array($filearea,

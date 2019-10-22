@@ -24,8 +24,8 @@
  */
 
 $string['clozeaid'] = 'Enter missing word';
+$string['correctanswer'] = 'Correct answer';
 $string['correctansweris'] = 'The correct answer is: {$a}';
-$string['correctanswersare'] = 'The correct answers are: {$a}';
 $string['pluginname'] = 'Flashcard';
 $string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the answer. After that he decides if he was right or not.';
 $string['pluginname_link'] = 'question/type/flashcard';
@@ -33,3 +33,4 @@ $string['pluginnameadding'] = 'Adding a Flashcard question';
 $string['pluginnameediting'] = 'Editing a Flashcard question';
 $string['pluginnamesummary'] = 'Allows the answering in flashcard style where the student decides if he was right or not.';
 $string['privacy:metadata'] = 'The Multiple choice question type plugin does not store any personal data.';
+

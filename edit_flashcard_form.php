@@ -41,27 +41,22 @@ class qtype_flashcard_edit_form extends question_edit_form {
      */
     protected function definition_inner($mform) {
 
-//TODO
-        $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_flashcard', '{no}'),
-                question_bank::fraction_options_full(), 1);
 
-        $this->add_combined_feedback_fields(true);
+        $this->add_answer_field($mform, get_string('correctanswer', 'qtype_flashcard'),
+                question_bank::fraction_options_full());
 
         $this->add_interactive_settings(false, false);
     }
 
-    protected function get_per_answer_fields($mform, $label, $gradeoptions,
-            &$repeatedoptions, &$answersoption) {
-        $repeated = array();
-        $repeated[] = $mform->createElement('editor', 'answer',
+    protected function add_answer_field($mform, $label, $gradeoptions) {
+                $mform->addElement('header', 'answerhdr',
+                    get_string('answers', 'question'), '');
+                $mform->setExpanded('answerhdr', 1);
+                $repeated = array();
+                $mform->addElement('editor', 'answer',
                 $label, array('rows' => 1), $this->editoroptions);
-        $repeated[] = $mform->createElement('select', 'fraction',
-                get_string('grade'), $gradeoptions);
-        $repeated[] = $mform->createElement('editor', 'feedback',
-                get_string('feedback', 'question'), array('rows' => 1), $this->editoroptions);
-        $repeatedoptions['answer']['type'] = PARAM_RAW;
-        $repeatedoptions['fraction']['default'] = 0;
-        $answersoption = 'answers';
+                $mform->setType('answer', PARAM_RAW);
+
         return $repeated;
     }
 
@@ -73,51 +68,7 @@ class qtype_flashcard_edit_form extends question_edit_form {
     protected function data_preprocessing($question) {
         $question = parent::data_preprocessing($question);
         $question = $this->data_preprocessing_answers($question, true);
-        $question = $this->data_preprocessing_combined_feedback($question, true);
-
         return $question;
-    }
-
-    public function validation($data, $files) {
-        $errors = parent::validation($data, $files);
-        $answers = $data['answer'];
-
-        $totalfraction = 0;
-        $maxfraction = -1;
-
-        foreach ($answers as $key => $answer) {
-            // Check no of choices.
-            $trimmedanswer = trim($answer['text']);
-            $fraction = (float) $data['fraction'][$key];
-            if ($trimmedanswer === '' && empty($fraction)) {
-                continue;
-            }
-            if ($trimmedanswer === '') {
-                $errors['fraction['.$key.']'] = get_string('errgradesetanswerblank', 'qtype_multichoice');
-            }
-
-            // Check grades.
-            if ($data['fraction'][$key] > 0) {
-                $totalfraction += $data['fraction'][$key];
-            }
-            if ($data['fraction'][$key] > $maxfraction) {
-                $maxfraction = $data['fraction'][$key];
-            }
-        }
-        // Perform sanity checks on fractional grades.
-        if ($data['single']) {
-            if ($maxfraction != 1) {
-                $errors['fraction[0]'] = get_string('errfractionsnomax', 'qtype_flashcard',
-                        $maxfraction * 100);
-            }
-        } else {
-            $totalfraction = round($totalfraction, 2);
-            if ($totalfraction != 1) {
-                $errors['fraction[0]'] = get_string('errfractionsaddwrong', 'qtype_flashcard',
-                        $totalfraction * 100);
-            }
-        }
-        return $errors;
     }
 
     public function qtype() {

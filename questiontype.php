@@ -63,8 +63,8 @@ class qtype_flashcard extends question_type {
         $context = $question->context;
         $result = new stdClass();
 
-        $oldanswers = $DB->get_records('question_answers',
-                array('question' => $question->id), 'id ASC');
+        $oldanswer = $DB->get_field('question_answers', 'id',
+                array('question' => $question->id));
 
         // Following hack to check at least two answers exist.
 
@@ -72,12 +72,21 @@ class qtype_flashcard extends question_type {
             $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
             return $result;
         }
-        $answer =  new stdClass();
-            // Doing an import.
-        $answer->answer = $this->import_or_save_files($question->answer,
-                $context, 'question', 'answer', $oldanswer->id);
+        if(!$oldanswer) {
+            $answer = new stdClass();
+            $answer->question = $question->id;
+            $answer->answer = '';
+            $answer->feedback = '';
+            $answer->id = $DB->insert_record('question_answers', $answer);
+        } else {
+            $answer = $oldanswer;
+        }
         $answer->answerformat = $question->answer['format'];
+        $answer->questionid = $question->id;
+        $answer->feedback = '';
 
+        $answer->answer = $this->import_or_save_files($question->answer,
+            $context, 'question', 'answer', $oldanswer);
         $DB->update_record('question_answers', $answer);
     }
 
