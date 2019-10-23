@@ -38,13 +38,10 @@ require_once($CFG->libdir . '/questionlib.php');
  */
 class qtype_flashcard extends question_type {
     public function get_question_options($question) {
-        global $DB;
-
         $question->options = $this->create_default_options($question);
 
         parent::get_question_options($question);
     }
-
     /**
      * Create a default options object for the provided question.
      *
@@ -63,10 +60,8 @@ class qtype_flashcard extends question_type {
         $context = $question->context;
         $result = new stdClass();
 
-        $oldanswer = $DB->get_field('question_answers', 'id',
-                array('question' => $question->id));
-
-        // Following hack to check at least two answers exist.
+        $oldanswer = $DB->get_record('question_answers',
+            array('question' => $question->id));
 
         if (!$question->answer) {
             $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
@@ -83,16 +78,14 @@ class qtype_flashcard extends question_type {
         }
         $answer->answerformat = $question->answer['format'];
         $answer->questionid = $question->id;
-        $answer->feedback = '';
-
         $answer->answer = $this->import_or_save_files($question->answer,
-            $context, 'question', 'answer', $oldanswer);
+            $context, 'question', 'answer', $answer->id);
         $DB->update_record('question_answers', $answer);
     }
 
     protected function make_question_instance($questiondata) {
         question_bank::load_question_definition_classes($this->name());
-            $class = 'qtype_flashcard';
+            $class = 'qtype_flashcard_question';
         return new $class();
     }
 
@@ -102,21 +95,24 @@ class qtype_flashcard extends question_type {
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
-        $question->shuffleanswers = $questiondata->options->shuffleanswers;
-        $question->answernumbering = $questiondata->options->answernumbering;
         if (!empty($questiondata->options->layout)) {
             $question->layout = $questiondata->options->layout;
         } else {
-            $question->layout = qtype_flashcard::LAYOUT_VERTICAL;
+            $question->layout = qtype_flashcard_question::LAYOUT_VERTICAL;
         }
-        $this->initialise_combined_feedback($question, $questiondata, true);
-
         $this->initialise_question_answers($question, $questiondata, false);
     }
 
+    /**
+     * Create a question_answer, or an appropriate subclass for this question,
+     * from a row loaded from the database.
+     * @param object $answer the DB row from the question_answers table plus extra answer fields.
+     * @return question_answer
+     */
     public function make_answer($answer) {
-        // Overridden just so we can make it public for use by question.php.
-        return parent::make_answer($answer);
+        $qa = new question_answer($answer->id, $answer->answer,
+            $answer->fraction, '', 0);
+        return $qa;
     }
 
     public function get_random_guess_score($questiondata) {

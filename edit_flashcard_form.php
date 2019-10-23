@@ -54,9 +54,9 @@ class qtype_flashcard_edit_form extends question_edit_form {
                 $mform->setExpanded('answerhdr', 1);
                 $repeated = array();
                 $mform->addElement('editor', 'answer',
-                $label, array('rows' => 1), $this->editoroptions);
+                $label, array('rows' => 15), $this->editoroptions);
                 $mform->setType('answer', PARAM_RAW);
-
+                $mform->addRule('answer', null, 'required', null, 'client');
         return $repeated;
     }
 
@@ -70,6 +70,44 @@ class qtype_flashcard_edit_form extends question_edit_form {
         $question = $this->data_preprocessing_answers($question, true);
         return $question;
     }
+    
+    /**
+     * Perform the necessary preprocessing for the fields added by
+     * {@link add_per_answer_fields()}.
+     * @param object $question the data being passed to the form.
+     * @return object $question the modified data.
+     */
+    protected function data_preprocessing_answers($question, $withanswerfiles = false) {
+        if (empty($question->options->answers)) {
+            return $question;
+        }
+        if (empty($question->options->answers)) {
+            return $question;
+        }
+        
+        foreach ($question->options->answers as $answer) {
+            if ($withanswerfiles) {
+                // Prepare the feedback editor to display files in draft area.
+                $draftitemid = file_get_submitted_draft_itemid('answer');
+                $question->answer['text'] = file_prepare_draft_area(
+                    $draftitemid,          // Draftid
+                    $this->context->id,    // context
+                    'question',            // component
+                    'answer',              // filarea
+                    !empty($answer->id) ? (int) $answer->id : null, // itemid
+                    $this->fileoptions,    // options
+                    $answer->answer        // text.
+                    );
+                $question->answer['itemid'] = $draftitemid;
+                $question->answer['format'] = $answer->answerformat;
+            } else {
+                $question->answer = $answer->answer;
+            }
+            break;
+        }
+        return $question;
+    }
+    
 
     public function qtype() {
         return 'flashcard';

@@ -26,6 +26,7 @@
 $string['clozeaid'] = 'Enter missing word';
 $string['correctanswer'] = 'Correct answer';
 $string['correctansweris'] = 'The correct answer is: {$a}';
+$string['flipbutton'] = 'Flip card';
 $string['pluginname'] = 'Flashcard';
 $string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the answer. After that he decides if he was right or not.';
 $string['pluginname_link'] = 'question/type/flashcard';

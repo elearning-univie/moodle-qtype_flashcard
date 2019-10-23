@@ -47,24 +47,38 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
     padding-left: 6px;
     padding-right: 0;
 }
-
-body#page-question-type-flashcard div[id^=fitem_id_][id*=fraction_] {
-    background: #eee;
-    margin-bottom: 0;
-    margin-top: 0;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    border: 1px solid #bbb;
-    border-top: 0;
-    border-bottom: 0;
+/*begin flip animation*/
+.qflashcard-flipcontainer {
+ perspective: 1000px;
 }
 
-body#page-question-type-flashcard div[id^=fitem_id_][id*=feedback_] {
-    background: #eee;
-    margin-bottom: 2em;
-    margin-top: 0;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    border: 1px solid #bbb;
-    border-top: 0;
+.qflashcard-flipcontainer.flipped .qflashcard-flipper {
+ transform: rotateX(180deg);
 }
+
+/* speed flip animation */
+.flipper {
+ transition: 1.5s;
+ transform-style: preserve-3d;
+ position: relative;
+ transform-origin: 100% 200px;
+}
+
+/* remove display of back side*/
+.qflashcard-question, .qflashcard-ablock {
+ backface-visibility: hidden;
+ position: absolute;
+ top: 0;
+ left: 0;
+}
+
+/* question = Front */
+.qflashcard-question {
+ z-index: 2;
+ transform: rotateX(0deg);
+}
+
+/* answer = background */
+.qflashcard-ablock {
+ transform: rotateX(180deg);
+} 

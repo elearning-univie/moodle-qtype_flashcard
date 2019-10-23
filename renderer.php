@@ -34,57 +34,46 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-abstract class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
+class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
-
+        global $PAGE;
         $question = $qa->get_question();
-        $response = $question->get_response($qa);
-
-        $inputname = $qa->get_qt_field_name('answer');
-        $inputattributes = array(
-            'type' => $this->get_input_type(),
-            'name' => $inputname,
-        );
-
-        if ($options->readonly) {
-            $inputattributes['disabled'] = 'disabled';
+        foreach($question->answers as $answer) {
+            $ans = $answer;
         }
-        $classes = array();
-        $ans = $question->answer;
+        $flipcontainercontent = '';
+        $flipcontainercontent .= html_writer::tag('div', $question->format_questiontext($qa),
+                array('class' => 'qtext qflashcard-question'));
 
+        $flipcontainercontent .= html_writer::start_tag('div', array('class' => 'ablock qflashcard-ablock'));
 
+        $flipcontainercontent .= html_writer::start_tag('div', array('class' => 'answer'));
+        $flipcontainercontent .= html_writer::tag('div',$question->format_text(
+            $ans->answer, $ans->answerformat,
+            $qa, 'question', 'answer', $ans->id),
+                array('class' => 'qanswer qflashcard-answer')) . "\n";
+        $flipcontainercontent .= html_writer::end_tag('div'); // Answer.
+
+        $flipcontainercontent .= html_writer::end_tag('div'); // Ablock.
         $result = '';
-        $result .= html_writer::tag('div', $question->format_questiontext($qa),
-                array('class' => 'qtext'));
-
-        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
-        $result .= html_writer::tag('div', $this->prompt(), array('class' => 'prompt'));
-
-        $result .= html_writer::start_tag('div', array('class' => 'answer'));
-        //TODO write javascript and HTML to flip card
-        $result .= html_writer::end_tag('div'); // Answer.
-
-        $result .= $this->after_choices($qa, $options);
-
-        $result .= html_writer::end_tag('div'); // Ablock.
-
+        $flipper = html_writer::div($flipcontainercontent,'qflashcard-flipper');
+        $flipper .= html_writer::tag('button', get_string('flipbutton', 'qtype_flashcard'),['class' => 'qflashcard-flipbutton btn btn-primary']);
+        $result = html_writer::tag('div', $flipper,
+            array('class' => 'qflashcard-flipcontainer'));
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div',
                     $question->get_validation_error($qa->get_last_qt_data()),
                     array('class' => 'validationerror'));
         }
-
+        $context = ['qubaid' => $qa->get_database_id()];
+        $PAGE->requires->js_call_amd('qtype_flashcard', 'init', $context);
         return $result;
     }
 
     protected function number_html($qnum) {
         return $qnum . '. ';
-    }
-    
-    public function after_choices(question_attempt $qa, question_display_options $options) {
-        //TODO
     }
 
 }
