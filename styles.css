@@ -52,35 +52,49 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
  perspective: 1000px;
 }
 
-.qflashcard-flipcontainer.flipped .qflashcard-flipper {
- transform: rotateX(180deg);
+@keyframes flipquestion {
+  0% {transform: rotateX(-360deg); visibility: visible; max-height: 10000px; }
+  100% {transform: rotateX(90deg); visibility: hidden; max-height: 0px;}
 }
 
-/* speed flip animation */
-.qflashcard-flipper {
- transition: 1.0s;
- transform-style: preserve-3d;
- position: relative;
- transform-origin: 100% 200px;
+@keyframes flipablock {
+  0% {transform: rotateX(-90deg); visibility: hidden;  max-height: 0px; }
+  100% {transform: rotateX(360deg); visibility: visible; max-height: 10000px;}
 }
 
-/* remove display of back side*/
-.qflashcard-question, .qflashcard-ablock {
- backface-visibility: hidden;
-}
-
-.qflashcard-flipbutton {
- position: relative;
- 
-}
-
-/* question = Front */
-.qflashcard-question {
- z-index: 2;
- transform: rotateX(0deg);
-}
-
-/* answer = background */
 .qflashcard-ablock {
- transform: rotateX(180deg);
+  visibility: hidden;
+  max-height: 0px;
+}
+
+.flipped .qflashcard-iwasrightbutton {
+  background-color: green;
+}
+.flipped .qflashcard-iwaswrongbutton {
+  background-color: red;
+}
+
+.flipped .qflashcard-question {
+  animation-name: flipquestion;
+  
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+  transform-origin: 0% 50% 50%;
+}
+.qflashcard-flipin {
+  visibility: hidden;
+  max-height: 0px;
+}
+.flipped .qflashcard-flipbutton {
+ visibility: hidden;
+ max-height: 0px;
+ max-width: 0px;
+}
+.flipped .qflashcard-ablock, .flipped .qflashcard-flipin {
+  animation-name: flipablock;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
 } 
