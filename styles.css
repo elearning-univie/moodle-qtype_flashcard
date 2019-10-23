@@ -15,7 +15,7 @@
 .que.flashcard .answer div.r0 div.specificfeedback,
 .que.flashcard .answer div.r1 div.specificfeedback {
     /* In Chrome and IE, the text-indent above is applied to any embedded table
-       cells or <li>s, which screws up the intended layout. This fixes it again. */
+       cells or <li>s, which screFws up the intended layout. This fixes it again. */
     text-indent: 0;
 }
 
@@ -57,8 +57,8 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 }
 
 /* speed flip animation */
-.flipper {
- transition: 1.5s;
+.qflashcard-flipper {
+ transition: 1.0s;
  transform-style: preserve-3d;
  position: relative;
  transform-origin: 100% 200px;
@@ -67,9 +67,11 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 /* remove display of back side*/
 .qflashcard-question, .qflashcard-ablock {
  backface-visibility: hidden;
- position: absolute;
- top: 0;
- left: 0;
+}
+
+.qflashcard-flipbutton {
+ position: relative;
+ 
 }
 
 /* question = Front */

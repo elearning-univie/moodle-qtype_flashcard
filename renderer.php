@@ -59,16 +59,16 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
         $flipcontainercontent .= html_writer::end_tag('div'); // Ablock.
         $result = '';
         $flipper = html_writer::div($flipcontainercontent,'qflashcard-flipper');
-        $flipper .= html_writer::tag('button', get_string('flipbutton', 'qtype_flashcard'),['class' => 'qflashcard-flipbutton btn btn-primary']);
+        $flipper .= html_writer::tag('button', get_string('flipbutton', 'qtype_flashcard'),['class' => 'qflashcard-flipbutton btn btn-primary', 'id' => 'qflashcard-flipbutton-' . $qa->get_database_id()]);
         $result = html_writer::tag('div', $flipper,
-            array('class' => 'qflashcard-flipcontainer'));
+            array('id' => 'qflashcard-flipcontainer-' . $qa->get_database_id(), 'class' => 'qflashcard-flipcontainer'));
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div',
                     $question->get_validation_error($qa->get_last_qt_data()),
                     array('class' => 'validationerror'));
         }
-        $context = ['qubaid' => $qa->get_database_id()];
-        $PAGE->requires->js_call_amd('qtype_flashcard', 'init', $context);
+        $context = ['qaid' => $qa->get_database_id()];
+        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init', $context);
         return $result;
     }
 
