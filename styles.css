@@ -53,13 +53,13 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 }
 
 @keyframes flipquestion {
-  0% {transform: rotateX(-360deg); visibility: visible; max-height: 10000px; }
+  0% {transform: rotateX(0deg); visibility: visible; max-height: 10000px; }
   100% {transform: rotateX(90deg); visibility: hidden; max-height: 0px;}
 }
 
 @keyframes flipablock {
   0% {transform: rotateX(-90deg); visibility: hidden;  max-height: 0px; }
-  100% {transform: rotateX(360deg); visibility: visible; max-height: 10000px;}
+  100% {transform: rotateX(0deg); visibility: visible; max-height: 10000px;}
 }
 
 .qflashcard-ablock {
@@ -77,7 +77,7 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 .flipped .qflashcard-question {
   animation-name: flipquestion;
   
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-in;
   transform-origin: 0% 50% 50%;
@@ -86,15 +86,15 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
   visibility: hidden;
   max-height: 0px;
 }
-.flipped .qflashcard-flipbutton {
- visibility: hidden;
- max-height: 0px;
- max-width: 0px;
-}
+/* .flipped .qflashcard-flipbutton { */
+/*  visibility: hidden; */
+/*  max-height: 0px; */
+/*  max-width: 0px; */
+/* } */
 .flipped .qflashcard-ablock, .flipped .qflashcard-flipin {
   animation-name: flipablock;
-  animation-duration: 1s;
-  animation-delay: 1s;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
 } 
