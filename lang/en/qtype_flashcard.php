@@ -24,13 +24,13 @@
  */
 
 $string['clozeaid'] = 'Enter missing word';
-$string['correctanswer'] = 'Correct answer';
+$string['correctanswer'] = 'Solution';
 $string['correctansweris'] = 'The correct answer is: {$a}';
 $string['flipbutton'] = 'Flip card';
-$string['iwasrightbutton'] = 'I was right';
-$string['iwaswrongbutton'] = 'I was wrong';
+$string['iwasrightbutton'] = 'Correct';
+$string['iwaswrongbutton'] = 'Wrong';
 $string['pluginname'] = 'Flashcard';
-$string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the answer. After that he decides if he was right or not.';
+$string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the solution. After that he decides if he was right or not.';
 $string['pluginname_link'] = 'question/type/flashcard';
 $string['pluginnameadding'] = 'Adding a Flashcard question';
 $string['pluginnameediting'] = 'Editing a Flashcard question';
