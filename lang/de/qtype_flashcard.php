@@ -24,13 +24,13 @@
  */
 
 $string['clozeaid'] = 'Fehlendes Wort einfügen';
-$string['correctanswer'] = 'Korrekte Antwort';
+$string['correctanswer'] = 'Musterlösung';
 $string['correctansweris'] = 'Die korrekte Antwort ist: {$a}';
 $string['flipbutton'] = 'Karte drehen';
-$string['iwasrightbutton'] = 'Ich hatte recht';
-$string['iwaswrongbutton'] = 'Ich lag falsch';
+$string['iwasrightbutton'] = 'Richtig';
+$string['iwaswrongbutton'] = 'Falsch';
 $string['pluginname'] = 'Lernkarte';
-$string['pluginname_help'] = 'Der Studierende sieht nur die Frage. Dann clickt er auf einen Button um die Antwort zu sehen. Danach entscheidet er ob er die Frage richtig oder falsch beantwortet hat.';
+$string['pluginname_help'] = 'Der Studierende sieht nur die Frage. Dann clickt er auf einen Button um die Musterlösung zu sehen. Danach entscheidet er ob er die Frage richtig oder falsch beantwortet hat.';
 $string['pluginname_link'] = 'question/type/flashcard';
 $string['pluginnameadding'] = 'Hinzufügen einer Lernkarten Frage';
 $string['pluginnameediting'] = 'Bearbeiten einer Lernkarten Frage';
