@@ -69,7 +69,6 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 
 .flipped .qflashcard-iwasrightbutton {
   background-color: green;
-  margin-right: 7px;
 }
 
 .flipped .qflashcard-iwaswrongbutton {
