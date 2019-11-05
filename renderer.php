@@ -60,9 +60,11 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
         $result = '';
         $flipper .= html_writer::div($flipcontainercontent,'qflashcard-flipper d-flex flex-column');
         $flipper .= html_writer::tag('button', get_string('flipbutton', 'qtype_flashcard'),['class' => 'qflashcard-flipbutton btn btn-primary', 'id' => 'qflashcard-flipbutton-' . $qa->get_database_id()]);
-        $flipper .= html_writer::tag('button', get_string('iwasrightbutton', 'qtype_flashcard'),['class' => 'qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin', 'id' => 'qflashcard-iwasrightbutton-' . $qa->get_database_id()]);
+	$flipper .= html_writer::start_tag('div',array('class' => 'ablock'));
+	$flipper .= html_writer::tag('button', get_string('iwasrightbutton', 'qtype_flashcard'),['class' => 'qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin', 'id' => 'qflashcard-iwasrightbutton-' . $qa->get_database_id()]);
         $flipper .= html_writer::tag('button', get_string('iwaswrongbutton', 'qtype_flashcard'),['class' => 'qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin', 'id' => 'qflashcard-iwaswrongbutton-' . $qa->get_database_id()]);
-        $result = html_writer::tag('div', $flipper,
+        $flipper .= html_writer::end_tag('div');
+	$result = html_writer::tag('div', $flipper,
             array('id' => 'qflashcard-flipcontainer-' . $qa->get_database_id(), 'class' => 'qflashcard-flipcontainer'));
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div',
