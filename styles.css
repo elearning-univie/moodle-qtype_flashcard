@@ -53,18 +53,19 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
 }
 
 @keyframes flipquestion {
-  0% {transform: rotateX(0deg); visibility: visible; max-height: 10000px; }
+  0% {transform: rotateX(0deg); visibility: visible; max-height: 10000000px; }
   100% {transform: rotateX(90deg); visibility: hidden; max-height: 0px;}
+}
+
+@keyframes flipfbutton {
+    0% {transform: rotateX(0deg); visibility: visible;  max-height: 10000000px; }
+    50% {transform: rotateX(90deg); visibility: hidden;  max-height: 0px; }
+    100% {transform: rotateX(0deg); visibility: visible; max-height: 10000000px;}
 }
 
 @keyframes flipablock {
   0% {transform: rotateX(-90deg); visibility: hidden;  max-height: 0px; }
-  100% {transform: rotateX(0deg); visibility: visible; max-height: 10000px;}
-}
-
-.qflashcard-ablock {
-  visibility: hidden;
-  max-height: 0px;
+  100% {transform: rotateX(0deg); visibility: visible; max-height: 10000000px;}
 }
 
 .flipped .qflashcard-iwasrightbutton {
@@ -75,27 +76,35 @@ body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
   background-color: red;
 }
 
-.flipped .qflashcard-question {
-  animation-name: flipquestion;
-  
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in;
-  transform-origin: 0% 50% 50%;
+.que.flashcard .qflashcard-question {
+    margin: 0px;
 }
-.qflashcard-flipin {
+
+.que.flashcard .qflashcard-flipin, .que.flashcard .qflashcard-ablock {
   visibility: hidden;
   max-height: 0px;
+  margin: 0px;
 }
-/* .flipped .qflashcard-flipbutton { */
-/*  visibility: hidden; */
-/*  max-height: 0px; */
-/*  max-width: 0px; */
-/* } */
+
 .flipped .qflashcard-ablock, .flipped .qflashcard-flipin {
   animation-name: flipablock;
   animation-duration: 0.5s;
   animation-delay: 0.5s;
   animation-fill-mode: both;
   animation-timing-function: ease-out;
-} 
+}
+
+.flipped .qflashcard-question{
+    animation-name: flipquestion;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
+    transform-origin: 0% 50% 50%;
+}
+
+.flipped .qflashcard-flipbutton {
+    animation-name: flipfbutton;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+}
