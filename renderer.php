@@ -34,12 +34,10 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer
-{
+class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
   public function formulation_and_controls(question_attempt $qa,
-                                           question_display_options $options)
-  {
+                                           question_display_options $options) {
     global $PAGE;
     $question = $qa->get_question();
     foreach ($question->answers as $answer) {
@@ -82,8 +80,7 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer
     return $result;
   }
 
-  protected function number_html($qnum)
-  {
+  protected function number_html($qnum) {
     return $qnum . '. ';
   }
 
