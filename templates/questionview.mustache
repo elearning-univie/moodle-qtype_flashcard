@@ -1,0 +1,25 @@
+<div class="qflashcard-flipper d-flex flex-column">
+    <div class="qtext qflashcard-question align-self-stretch">
+        {{{questiontext}}}
+    </div>
+    <div class="ablock qflashcard-ablock align-self-stretch">
+        <div class="answer">
+            <div class="qanswer qflashcard-answer qflashcard-flipin">
+                {{{answer}}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row no-gutters mt-2">
+    <button class="qflashcard-flipbutton btn btn-primary" id="{{flipid}}">
+        {{fliptext}}
+    </button>
+</div>
+<div class="row d-inline-flex no-gutters mt-3">
+    <button class="qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin mr-3" id="{{iwasrightid}}">
+        {{{iwasrighttext}}}
+    </button>
+    <button class="qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin" id="{{iwaswrongid}}">
+        {{{iwaswrongtext}}}
+    </button>
+</div>
