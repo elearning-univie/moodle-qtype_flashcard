@@ -42,24 +42,22 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
             $ans = $answer;
         }
 
-        $context = ['qaid' => $qa->get_database_id()];
-        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init', $context);
+        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion','init');
+        $qaid =  $qa->get_database_id();
         $renderer = $PAGE->get_renderer('core');
+
         $templatecontext['questiontext'] = $question->format_questiontext($qa);
         $templatecontext['answer'] = $question->format_text(
                 $ans->answer, $ans->answerformat,
                 $qa, 'question', 'answer', $ans->id);
-        $templatecontext['flipid'] = 'qflashcard-flipbutton-' . $qa->get_database_id();
         $templatecontext['fliptext'] = get_string('flipbutton', 'qtype_flashcard');
-        $templatecontext['iwasrightid'] = 'qflashcard-iwasrightbutton-' . $qa->get_database_id();
-        $templatecontext['iwaswrongid'] = 'qflashcard-iwaswrongbutton-' . $qa->get_database_id();
         $templatecontext['iwasrighttext'] = $this->pix_icon('t/check', '') . get_string('iwasrightbutton', 'qtype_flashcard');
         $templatecontext['iwaswrongtext'] = $this->pix_icon('e/cancel', '') . get_string('iwaswrongbutton', 'qtype_flashcard');
+        $templatecontext['qaid'] = $qaid;
 
         $content = $renderer->render_from_template('qtype_flashcard/questionview', $templatecontext);
-      
-        $result = html_writer::tag('div', $content,
-                array('id' => 'qflashcard-flipcontainer-' . $qa->get_database_id(), 'class' => 'qflashcard-flipcontainer'));
+
+        $result = $content;
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div',
                     $question->get_validation_error($qa->get_last_qt_data()),
