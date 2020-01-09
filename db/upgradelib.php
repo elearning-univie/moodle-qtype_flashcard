@@ -150,7 +150,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     /**
      * set the first step element
      * @param object $state
-     * @param $data
+     * @param array $data
      */
     public function set_first_step_data_elements($state, &$data) {
         if (!$state->answer) {

@@ -56,6 +56,7 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
 
     /**
      * Process the qtype/flashcard element
+     * @param object $data
      */
     public function process_flashcard($data) {
         global $DB;
@@ -105,6 +106,7 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
      * answer are two (hypen speparated) lists of comma separated question_answers
      * the first to specify the order of the answers and the second to specify the
      * responses. Note the order list (the first one) can be optional
+     * @param object $state
      */
     public function recode_legacy_state_answer($state) {
         $answer = $state->answer;
