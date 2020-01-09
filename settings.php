@@ -24,4 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {}
+if ($ADMIN->fulltree) {
+    null;
+}
