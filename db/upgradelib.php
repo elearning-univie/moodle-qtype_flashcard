@@ -17,8 +17,7 @@
 /**
  * Upgrade library code for the multichoice question type.
  *
- * @package    qtype
- * @subpackage multichoice
+ * @package    qtype_flashcard
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

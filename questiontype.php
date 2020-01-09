@@ -17,8 +17,7 @@
 /**
  * The questiontype class for the multiple choice question type.
  *
- * @package    qtype
- * @subpackage multichoice
+ * @package    qtype_flashcard
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

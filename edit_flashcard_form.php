@@ -17,8 +17,7 @@
 /**
  * Defines the editing form for the multiple choice question type.
  *
- * @package    qtype
- * @subpackage flashcard
+ * @package    qtype_flashcard
  * @copyright  2019 Thomas Wedekind
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
