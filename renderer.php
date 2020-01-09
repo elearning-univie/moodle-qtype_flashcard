@@ -26,6 +26,9 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Class qtype_flashcard_renderer renders the flashcard
+ *
+ * @copyright  2020 University of vienna
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
