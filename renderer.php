@@ -18,7 +18,7 @@
  * Multiple choice question renderer classes.
  *
  * @package    qtype_flashcard
- * @copyright  2009 The Open University
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

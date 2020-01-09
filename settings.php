@@ -18,7 +18,7 @@
  * Admin settings for the multichoice question type.
  *
  * @package   qtype_flashcard
- * @copyright  2015 onwards Nadav Kavalerchik
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

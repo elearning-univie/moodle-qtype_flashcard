@@ -17,9 +17,8 @@
 /**
  * Serve question type files
  *
- * @since      Moodle 2.0
- * @package    qtype_multichoice
- * @copyright  Dongsheng Cai <dongsheng@moodle.com>
+ * @package    qtype_flashcard
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
