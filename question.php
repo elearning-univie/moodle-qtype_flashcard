@@ -22,7 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/questionbase.php');
@@ -35,14 +34,30 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard_question extends question_graded_automatically {
-    const LAYOUT_DROPDOWN = 0;
+    /**
+     * Layout value for a dropdown
+     */
+    const LAYOUT_DROPDOWN = 0;=
+    /**
+     * Layout value for a vertical alignment
+     */
     const LAYOUT_VERTICAL = 1;
+    /**
+     * Layout value for a horizontal alignment
+     */
     const LAYOUT_HORIZONTAL = 2;
 
+    /**
+     * @var answer
+     */
     public $answer;
+    /**
+     * @var int layout
+     */
     public $layout = self::LAYOUT_VERTICAL;
 
     /**
+     * start a question attempt
      * @param question_attempt_step $step
      * @param $variant
      */
@@ -50,6 +65,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get the renderer for the plugin
      * @param moodle_page $page
      * @return qtype_renderer|renderer_base
      */
@@ -58,6 +74,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get the value to be expected from an answer
      * @return array|string
      */
     public function get_expected_data() {
@@ -65,6 +82,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * applys the attempt state
      * @param question_attempt_step $step
      * @throws coding_exception
      */
@@ -83,6 +101,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get the question text and answer in a html format
      * @return string|null
      */
     public function get_question_summary() {
@@ -91,6 +110,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * check if system can access a file
      * @param question_attempt $qa
      * @param question_display_options $options
      * @param string $component
@@ -120,6 +140,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get the minimum fraction
      * @return float|int
      */
     public function get_min_fraction() {
@@ -128,6 +149,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get all answers in a html format
      * @param array $response
      * @return string|null
      */
@@ -141,6 +163,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * get the response classification
      * @param array $response
      * @return array
      */
@@ -155,6 +178,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * returns an array
      * @return array|null
      */
     public function get_correct_response() {
@@ -162,6 +186,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * prepare a simulated test
      * @param array $simulatedresponse
      * @return array
      * @throws coding_exception
@@ -211,6 +236,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * test if the response is complete
      * @param array $response
      * @return bool
      */
@@ -266,6 +292,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     }
 
     /**
+     * test if a choice was selected
      * @param $response
      * @param $value
      * @return bool

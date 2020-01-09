@@ -29,7 +29,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Checks file access for multiple choice questions.
  *
- * @package  qtype_multichoice
  * @category files
  * @param stdClass $course course object
  * @param stdClass $cm course module object
