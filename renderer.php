@@ -24,13 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-/**
- * Base class for generating the bits of output common to multiple choice
- * single and multiple questions.
- *
- * @copyright  2009 The Open University
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
     /**
