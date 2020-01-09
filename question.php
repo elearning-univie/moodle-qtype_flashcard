@@ -37,7 +37,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     /**
      * Layout value for a dropdown
      */
-    const LAYOUT_DROPDOWN = 0;=
+    const LAYOUT_DROPDOWN = 0;
     /**
      * Layout value for a vertical alignment
      */
