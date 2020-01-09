@@ -55,6 +55,12 @@ class qtype_flashcard extends question_type {
         return $options;
     }
 
+    /**
+     * @param object $question
+     * @return object|stdClass
+     * @throws coding_exception
+     * @throws dml_exception
+     */
     public function save_question_options($question) {
         global $DB;
         $context = $question->context;
@@ -115,10 +121,19 @@ class qtype_flashcard extends question_type {
         return $qa;
     }
 
+    /**
+     * @param $questiondata
+     * @return number|null
+     */
     public function get_random_guess_score($questiondata) {
         return null;
     }
 
+    /**
+     * @param $questiondata
+     * @return array
+     * @throws coding_exception
+     */
     public function get_possible_responses($questiondata) {
         return array(
             $questiondata->id => array(
@@ -133,7 +148,11 @@ class qtype_flashcard extends question_type {
         );
     }
 
-
+    /**
+     * @param int $questionid
+     * @param int $oldcontextid
+     * @param int $newcontextid
+     */
     public function move_files($questionid, $oldcontextid, $newcontextid) {
         parent::move_files($questionid, $oldcontextid, $newcontextid);
         $this->move_files_in_answers($questionid, $oldcontextid, $newcontextid, true);

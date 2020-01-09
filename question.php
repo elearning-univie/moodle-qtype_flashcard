@@ -43,18 +43,32 @@ class qtype_flashcard_question extends question_graded_automatically {
     public $answer;
     public $layout = self::LAYOUT_VERTICAL;
 
-
+    /**
+     * @param question_attempt_step $step
+     * @param $variant
+     */
     public function start_attempt(question_attempt_step $step, $variant) {
     }
-    
+
+    /**
+     * @param moodle_page $page
+     * @return qtype_renderer|renderer_base
+     */
     public function get_renderer(moodle_page $page) {
         return $page->get_renderer('qtype_flashcard');
     }
 
+    /**
+     * @return array|string
+     */
     public function get_expected_data() {
         return array('answer' => PARAM_BOOL);
     }
 
+    /**
+     * @param question_attempt_step $step
+     * @throws coding_exception
+     */
     public function apply_attempt_state(question_attempt_step $step) {
         if (isset($this->answer)) {
             return;
@@ -69,11 +83,23 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     }
 
+    /**
+     * @return string|null
+     */
     public function get_question_summary() {
         $question = $this->html_to_text($this->questiontext, $this->questiontextformat);
         return $question;
     }
 
+    /**
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @param string $component
+     * @param string $filearea
+     * @param array $args
+     * @param bool $forcedownload
+     * @return bool
+     */
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
         
         if ($component == 'question' && in_array($filearea,
@@ -93,12 +119,19 @@ class qtype_flashcard_question extends question_graded_automatically {
                     $args, $forcedownload);
         }
     }
-    
+
+    /**
+     * @return float|int
+     */
     public function get_min_fraction() {
         $minfraction = 0;
         return $minfraction;
     }
-    
+
+    /**
+     * @param array $response
+     * @return string|null
+     */
     public function summarise_response(array $response) {
         if (!$this->is_complete_response($response)) {
             return null;
@@ -107,7 +140,11 @@ class qtype_flashcard_question extends question_graded_automatically {
         return $this->html_to_text($this->answers[$ansid]->answer,
             $this->answers[$ansid]->answerformat);
     }
-    
+
+    /**
+     * @param array $response
+     * @return array
+     */
     public function classify_response(array $response) {
         if (!$this->is_complete_response($response)) {
             return array($this->id => question_classified_response::no_response());
@@ -117,11 +154,19 @@ class qtype_flashcard_question extends question_graded_automatically {
         return array($this->id => new question_classified_response($choiceid,
             $this->html_to_text($ans->answer, $ans->answerformat), $ans->fraction));
     }
-    
+
+    /**
+     * @return array|null
+     */
     public function get_correct_response() {
         return array();
     }
-    
+
+    /**
+     * @param array $simulatedresponse
+     * @return array
+     * @throws coding_exception
+     */
     public function prepare_simulated_post_data($simulatedresponse) {
         $ansid = 0;
         if (clean_param($this->answer->answer, PARAM_NOTAGS) == $simulatedresponse['answer']) {
@@ -134,7 +179,13 @@ class qtype_flashcard_question extends question_graded_automatically {
             return array();
         }
     }
-    
+
+    /**
+     * Get all answers from a simulation
+     * @param string[] $postdata
+     * @return array|string[]
+     * @throws coding_exception
+     */
     public function get_student_response_values_for_simulation($postdata) {
         if (!isset($postdata['answer'])) {
             return array();
@@ -143,7 +194,13 @@ class qtype_flashcard_question extends question_graded_automatically {
             return array('answer' => clean_param($answer->answer, PARAM_NOTAGS));
         }
     }
-    
+
+    /**
+     * Compare the new and old answeres against each other
+     * @param array $prevresponse
+     * @param array $newresponse
+     * @return bool
+     */
     public function is_same_response(array $prevresponse, array $newresponse) {
         if (!$this->is_complete_response($prevresponse)) {
             $prevresponse = [];
@@ -153,16 +210,30 @@ class qtype_flashcard_question extends question_graded_automatically {
         }
         return question_utils::arrays_same_at_key($prevresponse, $newresponse, 'answer');
     }
-    
+
+    /**
+     * @param array $response
+     * @return bool
+     */
     public function is_complete_response(array $response) {
         return array_key_exists('answer', $response) && $response['answer'] !== ''
             && (string) $response['answer'] !== '-1';
     }
-    
+
+    /**
+     * Test if the answer is complete
+     * @param array $response
+     * @return bool
+     */
     public function is_gradable_response(array $response) {
         return $this->is_complete_response($response);
     }
-    
+
+    /**
+     * Get the answer state of a question
+     * @param array $response
+     * @return array
+     */
     public function grade_response(array $response) {
         if (array_key_exists('answer', $response) &&
             array_key_exists($response['answer'], $this->order)) {
@@ -172,18 +243,34 @@ class qtype_flashcard_question extends question_graded_automatically {
             }
             return array($fraction, question_state::graded_state_for_fraction($fraction));
     }
-    
+
+    /**
+     * Tests if an answer is formal correct
+     * @param array $response
+     * @return string
+     * @throws coding_exception
+     */
     public function get_validation_error(array $response) {
         if ($this->is_gradable_response($response)) {
             return '';
         }
         return get_string('pleaseselectananswer', 'qtype_flashcard');
     }
-    
+
+    /**
+     * Get the last question attempt answer
+     * @param question_attempt $qa
+     * @return mixed
+     */
     public function get_response(question_attempt $qa) {
         return $qa->get_last_qt_var('answer', -1);
     }
-    
+
+    /**
+     * @param $response
+     * @param $value
+     * @return bool
+     */
     public function is_choice_selected($response, $value) {
         return (string) $response === (string) $value;
     }

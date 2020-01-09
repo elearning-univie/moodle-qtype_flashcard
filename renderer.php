@@ -34,6 +34,14 @@ defined('MOODLE_INTERNAL') || die();
  */
 class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
+    /**
+     * Renders the flashcard question with the flashcard template
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @return bool|string
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
         global $PAGE;

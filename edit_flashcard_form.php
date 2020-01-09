@@ -107,8 +107,10 @@ class qtype_flashcard_edit_form extends question_edit_form {
         }
         return $question;
     }
-    
 
+    /**
+     * @return string|the
+     */
     public function qtype() {
         return 'flashcard';
     }

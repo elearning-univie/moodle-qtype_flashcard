@@ -39,11 +39,18 @@ defined('MOODLE_INTERNAL') || die();
 class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updater {
     protected $order;
 
+    /**
+     * @param $state
+     * @return bool
+     */
     public function is_blank_answer($state) {
         // Blank multichoice answers are not empty strings, they rather end in a colon.
         return empty($state->answer) || substr($state->answer, -1) == ':';
     }
 
+    /**
+     * @return string
+     */
     public function right_answer() {
         if ($this->question->options->single) {
             foreach ($this->question->options->answers as $ans) {
@@ -63,6 +70,10 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
         }
     }
 
+    /**
+     * @param $answer
+     * @return mixed
+     */
     protected function explode_answer($answer) {
         if (strpos($answer, ':') !== false) {
             list($order, $responses) = explode(':', $answer);
@@ -76,6 +87,10 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
         }
     }
 
+    /**
+     * @param $state
+     * @return string|null
+     */
     public function response_summary($state) {
         $responses = $this->explode_answer($state->answer);
         if ($this->question->options->single) {
@@ -114,6 +129,10 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
         }
     }
 
+    /**
+     * @param $state
+     * @return bool
+     */
     public function was_answered($state) {
         $responses = $this->explode_answer($state->answer);
         if ($this->question->options->single) {
@@ -123,6 +142,10 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
         }
     }
 
+    /**
+     * @param $state
+     * @param $data
+     */
     public function set_first_step_data_elements($state, &$data) {
         if (!$state->answer) {
             return;
@@ -132,10 +155,17 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
         $this->order = explode(',', $order);
     }
 
+    /**
+     * @param $data
+     */
     public function supply_missing_first_step_data(&$data) {
         $data['_order'] = implode(',', array_keys($this->question->options->answers));
     }
 
+    /**
+     * @param $state
+     * @param $data
+     */
     public function set_data_elements_for_step($state, &$data) {
         $responses = $this->explode_answer($state->answer);
         if ($this->question->options->single) {
