@@ -47,6 +47,14 @@ class qtype_flashcard_edit_form extends question_edit_form {
         $this->add_interactive_settings(false, false);
     }
 
+    /**
+     * adds an answer field
+     * @param mform $mform
+     * @param label $label
+     * @param gradeoptions $gradeoptions
+     * @return array
+     * @throws coding_exception
+     */
     protected function add_answer_field($mform, $label, $gradeoptions) {
                 $mform->addElement('header', 'answerhdr',
                     get_string('answers', 'question'), '');
@@ -59,11 +67,22 @@ class qtype_flashcard_edit_form extends question_edit_form {
         return $repeated;
     }
 
+    /**
+     * get the hint fields
+     * @param bool $withclearwrong
+     * @param bool $withshownumpartscorrect
+     * @return array
+     */
     protected function get_hint_fields($withclearwrong = false, $withshownumpartscorrect = false) {
         list($repeated, $repeatedoptions) = parent::get_hint_fields($withclearwrong, $withshownumpartscorrect);
         return array($repeated, $repeatedoptions);
     }
 
+    /**
+     * preprocess the question data
+     * @param object $question
+     * @return object
+     */
     protected function data_preprocessing($question) {
         $question = parent::data_preprocessing($question);
         $question = $this->data_preprocessing_answers($question, true);
@@ -108,6 +127,7 @@ class qtype_flashcard_edit_form extends question_edit_form {
     }
 
     /**
+     * get the qtype string
      * @return string|the
      */
     public function qtype() {

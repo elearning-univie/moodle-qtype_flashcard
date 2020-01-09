@@ -36,6 +36,12 @@ require_once($CFG->libdir . '/questionlib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard extends question_type {
+
+    /**
+     * get the options for a question
+     * @param object $question
+     * @return bool|void
+     */
     public function get_question_options($question) {
         $question->options = $this->create_default_options($question);
 
@@ -55,6 +61,7 @@ class qtype_flashcard extends question_type {
     }
 
     /**
+     * save the options for a question
      * @param object $question
      * @return object|stdClass
      * @throws coding_exception
@@ -88,16 +95,32 @@ class qtype_flashcard extends question_type {
         $DB->update_record('question_answers', $answer);
     }
 
+    /**
+     * create an instance of a question
+     * @param object $questiondata
+     * @return mixed|question_definition
+     * @throws coding_exception
+     */
     protected function make_question_instance($questiondata) {
         question_bank::load_question_definition_classes($this->name());
             $class = 'qtype_flashcard_question';
         return new $class();
     }
 
+    /**
+     * create a hint
+     * @param object $hint
+     * @return question_hint|question_hint_with_parts
+     */
     protected function make_hint($hint) {
         return question_hint_with_parts::load_from_record($hint);
     }
 
+    /**
+     * initialise an instance of a question
+     * @param question_definition $question
+     * @param object $questiondata
+     */
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
         if (!empty($questiondata->options->layout)) {
@@ -121,7 +144,8 @@ class qtype_flashcard extends question_type {
     }
 
     /**
-     * @param $questiondata
+     * get a random guess score
+     * @param questiondata $questiondata
      * @return number|null
      */
     public function get_random_guess_score($questiondata) {
@@ -129,7 +153,8 @@ class qtype_flashcard extends question_type {
     }
 
     /**
-     * @param $questiondata
+     * get all possible responses for a question
+     * @param questiondata $questiondata
      * @return array
      * @throws coding_exception
      */
@@ -148,6 +173,7 @@ class qtype_flashcard extends question_type {
     }
 
     /**
+     * move files
      * @param int $questionid
      * @param int $oldcontextid
      * @param int $newcontextid
@@ -159,6 +185,11 @@ class qtype_flashcard extends question_type {
         $this->move_files_in_hints($questionid, $oldcontextid, $newcontextid);
     }
 
+    /**
+     * delete files
+     * @param int $questionid
+     * @param int $contextid
+     */
     protected function delete_files($questionid, $contextid) {
         parent::delete_files($questionid, $contextid);
         $this->delete_files_in_answers($questionid, $contextid, true);

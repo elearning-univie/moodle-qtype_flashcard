@@ -27,10 +27,9 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . '/question/type/questionbase.php');
 
 /**
- * Base class for multiple choice questions. The parts that are common to
- * single select and multiple select.
+ * Base functions for the question handling
  *
- * @copyright  2009 The Open University
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard_question extends question_graded_automatically {
@@ -59,7 +58,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     /**
      * start a question attempt
      * @param question_attempt_step $step
-     * @param $variant
+     * @param type $variant
      */
     public function start_attempt(question_attempt_step $step, $variant) {
     }
@@ -293,8 +292,8 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * test if a choice was selected
-     * @param $response
-     * @param $value
+     * @param string $response
+     * @param string $value
      * @return bool
      */
     public function is_choice_selected($response, $value) {

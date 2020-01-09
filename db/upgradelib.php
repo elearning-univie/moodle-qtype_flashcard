@@ -27,19 +27,21 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * Class for converting attempt data for multichoice questions when upgrading
- * attempts to the new question engine.
- *
  * This class is used by the code in question/engine/upgrade/upgradelib.php.
  *
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updater {
+
+    /**
+     * @var order
+     */
     protected $order;
 
     /**
-     * @param $state
+     * check if answer is empty
+     * @param state $state
      * @return bool
      */
     public function is_blank_answer($state) {
@@ -48,6 +50,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
+     * get the correct answer
      * @return string
      */
     public function right_answer() {
@@ -70,7 +73,8 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
-     * @param $answer
+     * explodes the answers
+     * @param answer $answer
      * @return mixed
      */
     protected function explode_answer($answer) {
@@ -87,7 +91,8 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
-     * @param $state
+     * get a summary of the responses
+     * @param state $state
      * @return string|null
      */
     public function response_summary($state) {
@@ -129,7 +134,8 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
-     * @param $state
+     * check if an answer was given
+     * @param state $state
      * @return bool
      */
     public function was_answered($state) {
@@ -142,7 +148,8 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
-     * @param $state
+     * set the first step element
+     * @param state $state
      * @param $data
      */
     public function set_first_step_data_elements($state, &$data) {
@@ -155,15 +162,17 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
     }
 
     /**
-     * @param $data
+     * supply the missing data for the first step
+     * @param data $data
      */
     public function supply_missing_first_step_data(&$data) {
         $data['_order'] = implode(',', array_keys($this->question->options->answers));
     }
 
     /**
-     * @param $state
-     * @param $data
+     * set the data elements for a step
+     * @param state $state
+     * @param data $data
      */
     public function set_data_elements_for_step($state, &$data) {
         $responses = $this->explode_answer($state->answer);
