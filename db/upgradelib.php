@@ -41,7 +41,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
 
     /**
      * check if answer is empty
-     * @param state $state
+     * @param object $state
      * @return bool
      */
     public function is_blank_answer($state) {
@@ -74,7 +74,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
 
     /**
      * explodes the answers
-     * @param answer $answer
+     * @param string $answer
      * @return mixed
      */
     protected function explode_answer($answer) {
@@ -92,7 +92,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
 
     /**
      * get a summary of the responses
-     * @param state $state
+     * @param object $state
      * @return string|null
      */
     public function response_summary($state) {
@@ -149,7 +149,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
 
     /**
      * set the first step element
-     * @param state $state
+     * @param object $state
      * @param $data
      */
     public function set_first_step_data_elements($state, &$data) {
@@ -171,7 +171,7 @@ class qtype_multichoice_qe2_attempt_updater extends question_qtype_attempt_updat
 
     /**
      * set the data elements for a step
-     * @param state $state
+     * @param object $state
      * @param data $data
      */
     public function set_data_elements_for_step($state, &$data) {

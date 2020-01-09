@@ -58,7 +58,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     /**
      * start a question attempt
      * @param question_attempt_step $step
-     * @param type $variant
+     * @param object $variant
      */
     public function start_attempt(question_attempt_step $step, $variant) {
     }

@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Provides the information to backup flashcard questions
+ *
  * @package    qtype_flashcard
  * @subpackage backup-moodle2
  * @copyright  2019 onwards University of Vienna

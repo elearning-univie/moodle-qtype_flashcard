@@ -51,7 +51,7 @@ class qtype_flashcard_edit_form extends question_edit_form {
      * adds an answer field
      * @param mform $mform
      * @param label $label
-     * @param gradeoptions $gradeoptions
+     * @param object $gradeoptions
      * @return array
      * @throws coding_exception
      */
@@ -93,6 +93,7 @@ class qtype_flashcard_edit_form extends question_edit_form {
      * Perform the necessary preprocessing for the fields added by
      * {@link add_per_answer_fields()}.
      * @param object $question the data being passed to the form.
+     * @param object $withanswerfiles
      * @return object $question the modified data.
      */
     protected function data_preprocessing_answers($question, $withanswerfiles = false) {

@@ -15,9 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * provides the necessary information to restore one flashcard qtype plugin
+ *
  * @package    qtype_flashcard
  * @subpackage backup-moodle2
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,10 +28,9 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * restore plugin class that provides the necessary information
- * needed to restore one flashcard qtype plugin
+ * provides the necessary information to restore one flashcard qtype plugin
  *
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
@@ -68,6 +69,13 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
         $questioncreated = (bool) $this->get_mappingid('question_created', $oldquestionid);
     }
 
+    /**
+     * recode a response
+     * @param int $questionid
+     * @param int $sequencenumber
+     * @param array $response
+     * @return array
+     */
     public function recode_response($questionid, $sequencenumber, array $response) {
         if (array_key_exists('_order', $response)) {
             $response['_order'] = $this->recode_choice_order($response['_order']);

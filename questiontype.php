@@ -145,7 +145,7 @@ class qtype_flashcard extends question_type {
 
     /**
      * get a random guess score
-     * @param questiondata $questiondata
+     * @param object $questiondata
      * @return number|null
      */
     public function get_random_guess_score($questiondata) {
@@ -154,7 +154,7 @@ class qtype_flashcard extends question_type {
 
     /**
      * get all possible responses for a question
-     * @param questiondata $questiondata
+     * @param object $questiondata
      * @return array
      * @throws coding_exception
      */
