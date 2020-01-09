@@ -17,11 +17,12 @@
         </a>
     </div>
     <div class="row d-inline-flex no-gutters mt-3">
-        <button class="qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin mr-3" id="qflashcard-iwasrightbutton-{{qaid}}">
+        <button class="qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin mr-3" id="qflashcard-iwasrightbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 1)">
             {{{iwasrighttext}}}
         </button>
-        <button class="qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin" id="qflashcard-iwaswrongbutton-{{qaid}}">
+        <button class="qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin" id="qflashcard-iwaswrongbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 0)">
             {{{iwaswrongtext}}}
         </button>
     </div>
+    <input type="hidden" id="qflashcard-question-answer-{{qaid}}" />
 </div>
