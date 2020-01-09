@@ -24,6 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Class qtype_flashcard_renderer renders the flashcard
+ */
 class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
     /**
