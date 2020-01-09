@@ -48,8 +48,8 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
             $ans = $answer;
         }
 
-        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion','init');
-        $qaid =  $qa->get_database_id();
+        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
+        $qaid = $qa->get_database_id();
         $renderer = $PAGE->get_renderer('core');
 
         $templatecontext['questiontext'] = $question->format_questiontext($qa);

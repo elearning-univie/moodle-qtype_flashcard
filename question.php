@@ -57,6 +57,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * start a question attempt
+     *
      * @param question_attempt_step $step
      * @param object $variant
      */
@@ -65,6 +66,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * get the renderer for the plugin
+     *
      * @param moodle_page $page
      * @return qtype_renderer|renderer_base
      */
@@ -74,6 +76,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * get the value to be expected from an answer
+     *
      * @return array|string
      */
     public function get_expected_data() {
@@ -82,6 +85,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * applys the attempt state
+     *
      * @param question_attempt_step $step
      * @throws coding_exception
      */
@@ -101,6 +105,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * get the question text and answer in a html format
+     *
      * @return string|null
      */
     public function get_question_summary() {
@@ -110,6 +115,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * check if system can access a file
+     *
      * @param question_attempt $qa
      * @param question_display_options $options
      * @param string $component
@@ -119,9 +125,8 @@ class qtype_flashcard_question extends question_graded_automatically {
      * @return bool
      */
     public function check_file_access($qa, $options, $component, $filearea, $args, $forcedownload) {
-        
         if ($component == 'question' && in_array($filearea,
-                array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback'))) {
+                        array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback'))) {
             return $this->check_combined_feedback_file_access($qa, $options, $filearea, $args);
 
         } else if ($component == 'question' && $filearea == 'answer') {
@@ -130,7 +135,7 @@ class qtype_flashcard_question extends question_graded_automatically {
                 break;
             }
             $answerid = reset($args); // Itemid is answer id.
-            return  $answerid == $tocheck;
+            return $answerid == $tocheck;
 
         } else {
             return parent::check_file_access($qa, $options, $component, $filearea,
@@ -140,6 +145,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * get the minimum fraction
+     *
      * @return float|int
      */
     public function get_min_fraction() {
@@ -149,6 +155,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * get all answers in a html format
+     *
      * @param array $response
      * @return string|null
      */
@@ -158,11 +165,12 @@ class qtype_flashcard_question extends question_graded_automatically {
         }
         $ansid = $this->order[$response['answer']];
         return $this->html_to_text($this->answers[$ansid]->answer,
-            $this->answers[$ansid]->answerformat);
+                $this->answers[$ansid]->answerformat);
     }
 
     /**
      * get the response classification
+     *
      * @param array $response
      * @return array
      */
@@ -173,11 +181,12 @@ class qtype_flashcard_question extends question_graded_automatically {
         $choiceid = $this->order[$response['answer']];
         $ans = $this->answers[$choiceid];
         return array($this->id => new question_classified_response($choiceid,
-            $this->html_to_text($ans->answer, $ans->answerformat), $ans->fraction));
+                $this->html_to_text($ans->answer, $ans->answerformat), $ans->fraction));
     }
 
     /**
      * returns an array
+     *
      * @return array|null
      */
     public function get_correct_response() {
@@ -186,6 +195,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * prepare a simulated test
+     *
      * @param array $simulatedresponse
      * @return array
      * @throws coding_exception
@@ -193,8 +203,7 @@ class qtype_flashcard_question extends question_graded_automatically {
     public function prepare_simulated_post_data($simulatedresponse) {
         $ansid = 0;
         if (clean_param($this->answer->answer, PARAM_NOTAGS) == $simulatedresponse['answer']) {
-                $ansid = $this->answer->id;
-            
+            $ansid = $this->answer->id;
         }
         if ($ansid) {
             return array('answer' => array_search($ansid, $this->order));
@@ -205,6 +214,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * Get all answers from a simulation
+     *
      * @param string[] $postdata
      * @return array|string[]
      * @throws coding_exception
@@ -220,6 +230,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * Compare the new and old answeres against each other
+     *
      * @param array $prevresponse
      * @param array $newresponse
      * @return bool
@@ -236,16 +247,18 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * test if the response is complete
+     *
      * @param array $response
      * @return bool
      */
     public function is_complete_response(array $response) {
         return array_key_exists('answer', $response) && $response['answer'] !== ''
-            && (string) $response['answer'] !== '-1';
+                && (string) $response['answer'] !== '-1';
     }
 
     /**
      * Test if the answer is complete
+     *
      * @param array $response
      * @return bool
      */
@@ -255,21 +268,23 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * Get the answer state of a question
+     *
      * @param array $response
      * @return array
      */
     public function grade_response(array $response) {
         if (array_key_exists('answer', $response) &&
-            array_key_exists($response['answer'], $this->order)) {
-                $fraction = $this->answers[$this->order[$response['answer']]]->fraction;
-            } else {
-                $fraction = 0;
-            }
-            return array($fraction, question_state::graded_state_for_fraction($fraction));
+                array_key_exists($response['answer'], $this->order)) {
+            $fraction = $this->answers[$this->order[$response['answer']]]->fraction;
+        } else {
+            $fraction = 0;
+        }
+        return array($fraction, question_state::graded_state_for_fraction($fraction));
     }
 
     /**
      * Tests if an answer is formal correct
+     *
      * @param array $response
      * @return string
      * @throws coding_exception
@@ -283,6 +298,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * Get the last question attempt answer
+     *
      * @param question_attempt $qa
      * @return mixed
      */
@@ -292,6 +308,7 @@ class qtype_flashcard_question extends question_graded_automatically {
 
     /**
      * test if a choice was selected
+     *
      * @param string $response
      * @param string $value
      * @return bool

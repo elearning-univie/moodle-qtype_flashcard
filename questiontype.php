@@ -79,7 +79,7 @@ class qtype_flashcard extends question_type {
             $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
             return $result;
         }
-        if(!$oldanswer) {
+        if (!$oldanswer) {
             $answer = new stdClass();
             $answer->question = $question->id;
             $answer->answer = '';
