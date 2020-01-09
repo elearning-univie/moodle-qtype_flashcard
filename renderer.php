@@ -75,7 +75,7 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
     /**
      * adds a dot to a number
-     * @param $qnum
+     * @param int $qnum
      * @return string
      */
     protected function number_html($qnum) {
