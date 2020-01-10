@@ -17,23 +17,29 @@
 /**
  * Multiple choice question renderer classes.
  *
- * @package    qtype
- * @subpackage multichoice
- * @copyright  2009 The Open University
+ * @package    qtype_flashcard
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Base class for generating the bits of output common to multiple choice
- * single and multiple questions.
+ * Class qtype_flashcard_renderer renders the flashcard
  *
- * @copyright  2009 The Open University
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
+    /**
+     * Renders the flashcard question with the flashcard template
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @return bool|string
+     * @throws coding_exception
+     * @throws moodle_exception
+     */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
         global $PAGE;
@@ -42,8 +48,8 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
             $ans = $answer;
         }
 
-        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion','init');
-        $qaid =  $qa->get_database_id();
+        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
+        $qaid = $qa->get_database_id();
         $renderer = $PAGE->get_renderer('core');
 
         $templatecontext['questiontext'] = $question->format_questiontext($qa);
@@ -67,6 +73,11 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
         return $result;
     }
 
+    /**
+     * adds a dot to a number
+     * @param int $qnum
+     * @return string
+     */
     protected function number_html($qnum) {
         return $qnum . '. ';
     }

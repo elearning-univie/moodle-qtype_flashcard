@@ -15,9 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    moodlecore
+ * provides the necessary information to restore one flashcard qtype plugin
+ *
+ * @package    qtype_flashcard
  * @subpackage backup-moodle2
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,10 +28,9 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * restore plugin class that provides the necessary information
- * needed to restore one flashcard qtype plugin
+ * provides the necessary information to restore one flashcard qtype plugin
  *
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
@@ -55,6 +56,7 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
 
     /**
      * Process the qtype/flashcard element
+     * @param object $data
      */
     public function process_flashcard($data) {
         global $DB;
@@ -68,6 +70,13 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
         $questioncreated = (bool) $this->get_mappingid('question_created', $oldquestionid);
     }
 
+    /**
+     * recode a response
+     * @param int $questionid
+     * @param int $sequencenumber
+     * @param array $response
+     * @return array
+     */
     public function recode_response($questionid, $sequencenumber, array $response) {
         if (array_key_exists('_order', $response)) {
             $response['_order'] = $this->recode_choice_order($response['_order']);
@@ -97,6 +106,7 @@ class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
      * answer are two (hypen speparated) lists of comma separated question_answers
      * the first to specify the order of the answers and the second to specify the
      * responses. Note the order list (the first one) can be optional
+     * @param object $state
      */
     public function recode_legacy_state_answer($state) {
         $answer = $state->answer;

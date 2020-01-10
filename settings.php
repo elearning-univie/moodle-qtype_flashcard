@@ -17,13 +17,13 @@
 /**
  * Admin settings for the multichoice question type.
  *
- * @package   qtype_multichoice
- * @copyright  2015 onwards Nadav Kavalerchik
+ * @package   qtype_flashcard
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
-
+    null;
 }

@@ -17,9 +17,8 @@
 /**
  * Serve question type files
  *
- * @since      Moodle 2.0
- * @package    qtype_multichoice
- * @copyright  Dongsheng Cai <dongsheng@moodle.com>
+ * @package    qtype_flashcard
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +29,6 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Checks file access for multiple choice questions.
  *
- * @package  qtype_multichoice
  * @category files
  * @param stdClass $course course object
  * @param stdClass $cm course module object
