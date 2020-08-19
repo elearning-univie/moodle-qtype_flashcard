@@ -25,6 +25,7 @@
 $string['clozeaid'] = 'Fehlendes Wort einfügen';
 $string['correctanswer'] = 'Musterlösung';
 $string['correctansweris'] = 'Die korrekte Antwort ist: {$a}';
+$string['deletedchoice'] = 'Die ausgewählte Antwort wurde nicht gespeichert';
 $string['flipbutton'] = 'Karte drehen';
 $string['iwasrightbutton'] = 'Richtig';
 $string['iwaswrongbutton'] = 'Falsch';

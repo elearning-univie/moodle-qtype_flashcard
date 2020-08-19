@@ -25,8 +25,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_flashcard';
-$plugin->version   = 2020010200;
-
+$plugin->version   = 2020081900;
 $plugin->requires  = 2019051100;
-
 $plugin->maturity  = MATURITY_STABLE;
