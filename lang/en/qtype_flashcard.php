@@ -25,6 +25,7 @@
 $string['clozeaid'] = 'Enter missing word';
 $string['correctanswer'] = 'Solution';
 $string['correctansweris'] = 'The correct answer is: {$a}';
+$string['deletedchoice'] = 'Selected choice was not saved';
 $string['flipbutton'] = 'Flip card';
 $string['iwasrightbutton'] = 'Correct';
 $string['iwaswrongbutton'] = 'Wrong';
