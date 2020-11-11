@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The questiontype class for the multiple choice question type.
+ * The questiontype class for the flashcard question type.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
@@ -30,9 +30,9 @@ require_once($CFG->libdir . '/questionlib.php');
 
 
 /**
- * The multiple choice question type.
+ * The flashcard question type.
  *
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard extends question_type {
@@ -47,6 +47,7 @@ class qtype_flashcard extends question_type {
 
         parent::get_question_options($question);
     }
+
     /**
      * Create a default options object for the provided question.
      *
@@ -79,6 +80,7 @@ class qtype_flashcard extends question_type {
             $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
             return $result;
         }
+
         if (!$oldanswer) {
             $answer = new stdClass();
             $answer->question = $question->id;
@@ -88,6 +90,7 @@ class qtype_flashcard extends question_type {
         } else {
             $answer = $oldanswer;
         }
+
         $answer->answerformat = $question->answer['format'];
         $answer->questionid = $question->id;
         $answer->answer = $this->import_or_save_files($question->answer,

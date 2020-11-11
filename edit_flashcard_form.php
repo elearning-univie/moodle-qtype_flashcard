@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the editing form for the multiple choice question type.
+ * Defines the editing form for the flashcard question type.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
@@ -25,12 +25,13 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Multiple choice editing form definition.
+ * Flashcard question type editing form definition.
  *
- * @copyright  2007 Jamie Pratt
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard_edit_form extends question_edit_form {
+
     /**
      * Add question-type specific form fields.
      *
@@ -39,8 +40,6 @@ class qtype_flashcard_edit_form extends question_edit_form {
     protected function definition_inner($mform) {
         $this->add_answer_field($mform, get_string('correctanswer', 'qtype_flashcard'),
                 question_bank::fraction_options_full());
-
-        $this->add_interactive_settings(false, false);
     }
 
     /**
@@ -62,18 +61,6 @@ class qtype_flashcard_edit_form extends question_edit_form {
         $mform->setType('answer', PARAM_RAW);
         $mform->addRule('answer', null, 'required', null, 'client');
         return $repeated;
-    }
-
-    /**
-     * get the hint fields
-     *
-     * @param bool $withclearwrong
-     * @param bool $withshownumpartscorrect
-     * @return array
-     */
-    protected function get_hint_fields($withclearwrong = false, $withshownumpartscorrect = false) {
-        list($repeated, $repeatedoptions) = parent::get_hint_fields($withclearwrong, $withshownumpartscorrect);
-        return array($repeated, $repeatedoptions);
     }
 
     /**
