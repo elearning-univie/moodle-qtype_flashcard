@@ -111,15 +111,6 @@ class qtype_flashcard extends question_type {
     }
 
     /**
-     * create a hint
-     * @param object $hint
-     * @return question_hint|question_hint_with_parts
-     */
-    protected function make_hint($hint) {
-        return question_hint_with_parts::load_from_record($hint);
-    }
-
-    /**
      * initialise an instance of a question
      * @param question_definition $question
      * @param object $questiondata
@@ -185,7 +176,6 @@ class qtype_flashcard extends question_type {
         parent::move_files($questionid, $oldcontextid, $newcontextid);
         $this->move_files_in_answers($questionid, $oldcontextid, $newcontextid, true);
         $this->move_files_in_combined_feedback($questionid, $oldcontextid, $newcontextid);
-        $this->move_files_in_hints($questionid, $oldcontextid, $newcontextid);
     }
 
     /**
@@ -197,6 +187,5 @@ class qtype_flashcard extends question_type {
         parent::delete_files($questionid, $contextid);
         $this->delete_files_in_answers($questionid, $contextid, true);
         $this->delete_files_in_combined_feedback($questionid, $contextid);
-        $this->delete_files_in_hints($questionid, $contextid);
     }
 }
