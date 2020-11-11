@@ -77,7 +77,7 @@ class qtype_flashcard_edit_form extends question_edit_form {
 
     /**
      * Perform the necessary preprocessing for the fields added by
-     * {@link add_per_answer_fields()}.
+     * {@see add_per_answer_fields}.
      *
      * @param object $question the data being passed to the form.
      * @param object $withanswerfiles
