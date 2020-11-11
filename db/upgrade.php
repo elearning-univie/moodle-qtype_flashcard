@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Multiple choice question type upgrade code.
+ * Flashcard question type upgrade code.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
@@ -25,11 +25,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Upgrade code for the multiple choice question type.
+ * Upgrade code for the flashcard question type.
  * @param int $oldversion the version we are upgrading from.
  */
 function xmldb_qtype_flashcard_upgrade($oldversion) {
-    global $CFG;
-
     return true;
 }
