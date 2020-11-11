@@ -42,11 +42,9 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
      */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
-        global $PAGE;
-
-        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
-
-        $renderer = $PAGE->get_renderer('core');
+        
+        $this->page->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
+        $renderer = $this->page->get_renderer('core');
         $question = $qa->get_question();
         $qaid = $qa->get_database_id();
 
