@@ -25,7 +25,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
 require_once($CFG->libdir . '/questionlib.php');
 
 
@@ -77,7 +76,7 @@ class qtype_flashcard extends question_type {
             array('question' => $question->id));
 
         if (!$question->answer) {
-            $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
+            $result->error = get_string('notenoughanswers', 'qtype_flashcard');
             return $result;
         }
 
@@ -164,6 +163,46 @@ class qtype_flashcard extends question_type {
                 null => question_possible_response::no_response()
             )
         );
+    }
+
+    /**
+     * get question information from xml file
+     * @param object $data
+     * @param object $question
+     * @param qformat_xml $format
+     * @param null $extra
+     * @return false|object
+     */
+    public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
+
+        if (!isset($data['@']['type']) || $data['@']['type'] != 'flashcard') {
+            return false;
+        }
+
+        $question = $format->import_headers($data);
+        $question->qtype = 'flashcard';
+
+        $answer = $data['#']['answer'][0];
+        $ans = $format->import_answer($answer, true,
+            $format->get_format($question->questiontextformat));
+        $question->answer = $ans->answer;
+        $question->fraction = $answer['@']['fraction'];
+
+        return $question;
+    }
+
+    /**
+     * creates xml data for the xml export
+     * @param object $question
+     * @param qformat_xml $format
+     * @param null $extra
+     * @return false|string
+     */
+    public function export_to_xml($question, qformat_xml $format, $extra = null) {
+        $output = '';
+        $output .= $format->write_answers($question->options->answers);
+
+        return $output;
     }
 
     /**
