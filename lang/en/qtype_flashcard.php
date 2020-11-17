@@ -29,6 +29,7 @@ $string['deletedchoice'] = 'Selected choice was not saved';
 $string['flipbutton'] = 'Flip card';
 $string['iwasrightbutton'] = 'Correct';
 $string['iwaswrongbutton'] = 'Wrong';
+$string['notenoughanswers'] = 'This type of question requires one answer';
 $string['pluginname'] = 'Flashcard';
 $string['pluginname_help'] = 'The student will just see the question. Then he clicks on a button to see the solution. After that he decides if he was right or not.';
 $string['pluginname_link'] = 'question/type/flashcard';
@@ -36,4 +37,3 @@ $string['pluginnameadding'] = 'Adding a Flashcard question';
 $string['pluginnameediting'] = 'Editing a Flashcard question';
 $string['pluginnamesummary'] = 'Allows the answering in flashcard style where the student decides if he was right or not.';
 $string['privacy:metadata'] = 'The Multiple choice question type plugin does not store any personal data.';
-

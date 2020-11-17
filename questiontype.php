@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * The questiontype class for the multiple choice question type.
+ * The questiontype class for the flashcard question type.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
@@ -25,14 +25,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
 require_once($CFG->libdir . '/questionlib.php');
 
 
 /**
- * The multiple choice question type.
+ * The flashcard question type.
  *
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_flashcard extends question_type {
@@ -47,6 +46,7 @@ class qtype_flashcard extends question_type {
 
         parent::get_question_options($question);
     }
+
     /**
      * Create a default options object for the provided question.
      *
@@ -76,9 +76,10 @@ class qtype_flashcard extends question_type {
             array('question' => $question->id));
 
         if (!$question->answer) {
-            $result->error = get_string('notenoughanswers', 'qtype_flashcard', '2');
+            $result->error = get_string('notenoughanswers', 'qtype_flashcard');
             return $result;
         }
+
         if (!$oldanswer) {
             $answer = new stdClass();
             $answer->question = $question->id;
@@ -88,6 +89,7 @@ class qtype_flashcard extends question_type {
         } else {
             $answer = $oldanswer;
         }
+
         $answer->answerformat = $question->answer['format'];
         $answer->questionid = $question->id;
         $answer->answer = $this->import_or_save_files($question->answer,
@@ -105,15 +107,6 @@ class qtype_flashcard extends question_type {
         question_bank::load_question_definition_classes($this->name());
             $class = 'qtype_flashcard_question';
         return new $class();
-    }
-
-    /**
-     * create a hint
-     * @param object $hint
-     * @return question_hint|question_hint_with_parts
-     */
-    protected function make_hint($hint) {
-        return question_hint_with_parts::load_from_record($hint);
     }
 
     /**
@@ -173,6 +166,46 @@ class qtype_flashcard extends question_type {
     }
 
     /**
+     * get question information from xml file
+     * @param object $data
+     * @param object $question
+     * @param qformat_xml $format
+     * @param null $extra
+     * @return false|object
+     */
+    public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
+
+        if (!isset($data['@']['type']) || $data['@']['type'] != 'flashcard') {
+            return false;
+        }
+
+        $question = $format->import_headers($data);
+        $question->qtype = 'flashcard';
+
+        $answer = $data['#']['answer'][0];
+        $ans = $format->import_answer($answer, true,
+            $format->get_format($question->questiontextformat));
+        $question->answer = $ans->answer;
+        $question->fraction = $answer['@']['fraction'];
+
+        return $question;
+    }
+
+    /**
+     * creates xml data for the xml export
+     * @param object $question
+     * @param qformat_xml $format
+     * @param null $extra
+     * @return false|string
+     */
+    public function export_to_xml($question, qformat_xml $format, $extra = null) {
+        $output = '';
+        $output .= $format->write_answers($question->options->answers);
+
+        return $output;
+    }
+
+    /**
      * move files
      * @param int $questionid
      * @param int $oldcontextid
@@ -182,7 +215,6 @@ class qtype_flashcard extends question_type {
         parent::move_files($questionid, $oldcontextid, $newcontextid);
         $this->move_files_in_answers($questionid, $oldcontextid, $newcontextid, true);
         $this->move_files_in_combined_feedback($questionid, $oldcontextid, $newcontextid);
-        $this->move_files_in_hints($questionid, $oldcontextid, $newcontextid);
     }
 
     /**
@@ -194,6 +226,5 @@ class qtype_flashcard extends question_type {
         parent::delete_files($questionid, $contextid);
         $this->delete_files_in_answers($questionid, $contextid, true);
         $this->delete_files_in_combined_feedback($questionid, $contextid);
-        $this->delete_files_in_hints($questionid, $contextid);
     }
 }

@@ -1,28 +1,46 @@
-<div class="qflashcard-flipcontainer" id="qflashcard-flipcontainer-{{qaid}}">
-    <div class="qflashcard-flipper d-flex flex-column">
-        <div class="qtext qflashcard-question align-self-stretch">
-            {{{questiontext}}}
-        </div>
-        <div class="ablock qflashcard-ablock align-self-stretch">
-            <div class="answer">
-                <div class="qanswer qflashcard-answer qflashcard-flipin">
-                    {{{answer}}}
+{{!
+  This file is part of Moodle - http://moodle.org/
+
+  Moodle is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  Moodle is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+<section>
+    <div class="qflashcard-flipcontainer" id="qflashcard-flipcontainer-{{qaid}}">
+        <div class="qflashcard-flipper d-flex flex-column">
+            <div class="qtext qflashcard-question align-self-stretch">
+                {{{questiontext}}}
+            </div>
+            <div class="ablock qflashcard-ablock align-self-stretch">
+                <div class="answer">
+                    <div class="qanswer qflashcard-answer qflashcard-flipin">
+                        {{{answer}}}
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row no-gutters mt-2">
+            <a class="qflashcard-flipbutton btn btn-primary" id="qflashcard-flipbutton-{{qaid}}" onclick="$.qtype_flashcard_toggle_flipped({{qaid}})">
+                {{fliptext}}
+            </a>
+        </div>
+        <div class="row d-inline-flex no-gutters mt-3">
+            <button class="qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin mr-3" id="qflashcard-iwasrightbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 1)">
+                {{{iwasrighttext}}}
+            </button>
+            <button class="qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin" id="qflashcard-iwaswrongbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 0)">
+                {{{iwaswrongtext}}}
+            </button>
+        </div>
+        <input type="hidden" id="qflashcard-question-answer-{{qaid}}" />
     </div>
-    <div class="row no-gutters mt-2">
-        <a class="qflashcard-flipbutton btn btn-primary" id="qflashcard-flipbutton-{{qaid}}" onclick="$.qtype_flashcard_toggle_flipped({{qaid}})">
-            {{fliptext}}
-        </a>
-    </div>
-    <div class="row d-inline-flex no-gutters mt-3">
-        <button class="qflashcard-iwasrightbutton btn btn-primary qflashcard-flipin mr-3" id="qflashcard-iwasrightbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 1)">
-            {{{iwasrighttext}}}
-        </button>
-        <button class="qflashcard-iwaswrongbutton btn btn-primary qflashcard-flipin" id="qflashcard-iwaswrongbutton-{{qaid}}" onclick="$.qtype_flashcard_set_answer({{qaid}}, 0)">
-            {{{iwaswrongtext}}}
-        </button>
-    </div>
-    <input type="hidden" id="qflashcard-question-answer-{{qaid}}" />
-</div>
+</section>

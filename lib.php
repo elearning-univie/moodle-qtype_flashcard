@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * Checks file access for multiple choice questions.
+ * Checks file access for flashcard questions.
  *
  * @category files
  * @param stdClass $course course object

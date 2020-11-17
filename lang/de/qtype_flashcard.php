@@ -29,6 +29,7 @@ $string['deletedchoice'] = 'Die ausgewählte Antwort wurde nicht gespeichert';
 $string['flipbutton'] = 'Karte drehen';
 $string['iwasrightbutton'] = 'Richtig';
 $string['iwaswrongbutton'] = 'Falsch';
+$string['notenoughanswers'] = 'Dieser Fragentyp benötigt eine Antwort';
 $string['pluginname'] = 'Lernkarte';
 $string['pluginname_help'] = 'Der Studierende sieht nur die Frage. Dann clickt er auf einen Button um die Musterlösung zu sehen. Danach entscheidet er ob er die Frage richtig oder falsch beantwortet hat.';
 $string['pluginname_link'] = 'question/type/flashcard';

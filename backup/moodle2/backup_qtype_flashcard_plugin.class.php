@@ -19,7 +19,7 @@
  *
  * @package    qtype_flashcard
  * @subpackage backup-moodle2
- * @copyright  2019 onwards University of Vienna
+ * @copyright  2020 University of Vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Provides the information to backup flashcard questions
  *
- * @copyright  2019 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2020 University of Vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class backup_qtype_flashcard_plugin extends backup_qtype_plugin {
@@ -54,7 +54,6 @@ class backup_qtype_flashcard_plugin extends backup_qtype_plugin {
         $this->add_question_question_answers($pluginwrapper);
 
         // Don't need to annotate ids nor files.
-
         return $plugin;
     }
 }

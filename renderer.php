@@ -42,15 +42,14 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
      */
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
-        global $PAGE;
+        $this->page->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
+        $renderer = $this->page->get_renderer('core');
         $question = $qa->get_question();
+        $qaid = $qa->get_database_id();
+
         foreach ($question->answers as $answer) {
             $ans = $answer;
         }
-
-        $PAGE->requires->js_call_amd('qtype_flashcard/flipquestion', 'init');
-        $qaid = $qa->get_database_id();
-        $renderer = $PAGE->get_renderer('core');
 
         $templatecontext['questiontext'] = $question->format_questiontext($qa);
         $templatecontext['answer'] = $question->format_text(
@@ -62,8 +61,8 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
         $templatecontext['qaid'] = $qaid;
 
         $content = $renderer->render_from_template('qtype_flashcard/questionview', $templatecontext);
-
         $result = $content;
+
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div',
                     $question->get_validation_error($qa->get_last_qt_data()),
@@ -72,14 +71,4 @@ class qtype_flashcard_renderer extends qtype_with_combined_feedback_renderer {
 
         return $result;
     }
-
-    /**
-     * adds a dot to a number
-     * @param int $qnum
-     * @return string
-     */
-    protected function number_html($qnum) {
-        return $qnum . '. ';
-    }
-
 }
