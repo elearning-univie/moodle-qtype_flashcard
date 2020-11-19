@@ -1,142 +1,144 @@
 .que.flashcard .answer .specificfeedback {
-  display: inline;
-  padding: 0 0.7em;
-  background: #fff3bf;
+    display: inline;
+    padding: 0 0.7em;
+    background: #fff3bf;
 }
 
 .que.flashcard .answer div.r0,
 .que.flashcard .answer div.r1 {
-  padding: 0.3em 0 0.3em 25px;
-  text-indent: -25px;
+    padding: 0.3em 0 0.3em 25px;
+    text-indent: -25px;
 }
 
 .que.flashcard .answer div.r0 label,
 .que.flashcard .answer div.r1 label,
 .que.flashcard .answer div.r0 div.specificfeedback,
 .que.flashcard .answer div.r1 div.specificfeedback {
-  /* In Chrome and IE, the text-indent above is applied to any embedded table
-     cells or <li>s, which screFws up the intended layout. This fixes it again. */
-  text-indent: 0;
+    /* In Chrome and IE, the text-indent above is applied to any embedded table
+       cells or <li>s, which screFws up the intended layout. This fixes it again. */
+    text-indent: 0;
 }
 
 .que.flashcard .answer div.r0 input,
 .que.flashcard .answer div.r1 input {
-  margin: 0 5px;
-  padding: 0;
-  width: 15px;
+    margin: 0 5px;
+    padding: 0;
+    width: 15px;
 }
 
 /* Editing form. */
 body#page-question-type-flashcard div[id^=fitem_id_][id*=answer_] {
-  background: #eee;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  border: 1px solid #bbb;
-  border-bottom: 0;
+    background: #eee;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border: 1px solid #bbb;
+    border-bottom: 0;
 }
 
 body#page-question-type-flashcard div[id^=fitem_id_][id*=answer_] .fitemtitle {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 body#page-question-type-flashcard div[id^=fitem_id_] .fitemtitle {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 6px;
-  padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 6px;
+    padding-right: 0;
 }
 
 /*begin flip animation*/
 .qflashcard-flipcontainer {
-  perspective: 1000px;
+    perspective: 1000px;
 }
 
 @keyframes flipquestion {
-  0% {
-    transform: rotateX(0deg);
-    visibility: visible;
-    max-height: 10000000px;
-  }
-  100% {
-    transform: rotateX(90deg);
-    visibility: hidden;
-    max-height: 0px;
-  }
+    0% {
+        transform: rotateX(0deg);
+        visibility: visible;
+        max-height: 10000000px;
+    }
+    100% {
+        transform: rotateX(90deg);
+        visibility: hidden;
+        max-height: 0;
+    }
 }
 
 @keyframes flipfbutton {
-  0% {
-    transform: rotateX(0deg);
-    visibility: visible;
-    max-height: 10000000px;
-  }
-  50% {
-    transform: rotateX(90deg);
-    visibility: hidden;
-    max-height: 0px;
-  }
-  100% {
-    transform: rotateX(0deg);
-    visibility: visible;
-    max-height: 10000000px;
-  }
+    0% {
+        transform: rotateX(0deg);
+        visibility: visible;
+        max-height: 10000000px;
+    }
+    50% {
+        transform: rotateX(90deg);
+        visibility: hidden;
+        max-height: 0;
+    }
+    100% {
+        transform: rotateX(0deg);
+        visibility: visible;
+        max-height: 10000000px;
+    }
 }
 
 @keyframes flipablock {
-  0% {
-    transform: rotateX(-90deg);
-    visibility: hidden;
-    max-height: 0px;
-  }
-  100% {
-    transform: rotateX(0deg);
-    visibility: visible;
-    max-height: 10000000px;
-  }
+    0% {
+        transform: rotateX(-90deg);
+        visibility: hidden;
+        max-height: 0;
+    }
+    100% {
+        transform: rotateX(0deg);
+        visibility: visible;
+        max-height: 10000000px;
+    }
 }
+
 .qflashcard-flipcontainer .btn {
-  border: 0;
+    border: 0;
 }
 
 .flipped .qflashcard-iwasrightbutton {
-  background-color: green;
+    background-color: green;
 }
 
 .flipped .qflashcard-iwaswrongbutton {
-  background-color: red;
+    background-color: red;
 }
 
 .que.flashcard .qflashcard-question {
-  margin: 0px;
+    margin: 0;
 }
 
-.que.flashcard .qflashcard-flipin, .que.flashcard .qflashcard-ablock {
-  visibility: hidden;
-  max-height: 0px;
-  margin: 0px;
+.que.flashcard .qflashcard-flipin,
+.que.flashcard .qflashcard-ablock {
+    visibility: hidden;
+    max-height: 0;
+    margin: 0;
 }
 
-.flipped .qflashcard-ablock, .flipped .qflashcard-flipin {
-  animation-name: flipablock;
-  animation-duration: 0.5s;
-  animation-delay: 0.5s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-out;
+.flipped .qflashcard-ablock,
+.flipped .qflashcard-flipin {
+    animation-name: flipablock;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
 }
 
 .flipped .qflashcard-question {
-  animation-name: flipquestion;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in;
-  transform-origin: 0% 50% 50%;
+    animation-name: flipquestion;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
 }
 
 .flipped .qflashcard-flipbutton {
-  animation-name: flipfbutton;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-out;
+    animation-name: flipfbutton;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
 }
