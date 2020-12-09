@@ -34,12 +34,12 @@ class qtype_flashcard_edit_form extends question_edit_form {
 
     /**
      * Removes an element from the question edit form
-     * @param string $elementName
+     * @param string $elementname
      */
-    protected function removeFormElement($elementName)
+    public function removeFormElement($elementname)
     {
         $mform = $this->_form;
-        $mform->removeElement($elementName);
+        $mform->removeElement($elementname);
     }
 
     /**
