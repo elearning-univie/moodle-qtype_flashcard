@@ -33,6 +33,16 @@ defined('MOODLE_INTERNAL') || die();
 class qtype_flashcard_edit_form extends question_edit_form {
 
     /**
+     * Removes an element from the question edit form
+     * @param string $elementName
+     */
+    protected function removeFormElement($elementName)
+    {
+        $mform = $this->_form;
+        $mform->removeElement($elementName);
+    }
+
+    /**
      * Add question-type specific form fields.
      *
      * @param object $mform the form being built.
