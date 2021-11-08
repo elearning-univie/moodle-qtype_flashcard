@@ -15,16 +15,35 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the multiple choice question type.
+ * provides restore functions for flashcards including answers
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'qtype_flashcard';
-$plugin->version   = 2021110400;
-$plugin->requires  = 2020061501;
-$plugin->maturity  = MATURITY_STABLE;
+
+/**
+ * provides the necessary information needed to restore one flashcard qtype plugin
+ *
+ * @copyright  2020 University of vienna
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class restore_qtype_flashcard_plugin extends restore_qtype_plugin {
+
+    /**
+     * Returns the paths to be handled by the plugin at question level
+     */
+    protected function define_question_plugin_structure() {
+
+        $paths = array();
+
+        // This qtype uses question_answers, add them.
+        $this->add_question_question_answers($paths);
+
+        return $paths; // And we return the interesting paths.
+    }
+}
