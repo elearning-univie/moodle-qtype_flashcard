@@ -15,9 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the multiple choice question type.
+ * Version information for the flashcard question type.
  *
  * @package    qtype_flashcard
+ * @author     Adrian Czermak
+ * @author     Thomas Wedekind
  * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,6 +27,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_flashcard';
-$plugin->version   = 2021110400;
+$plugin->version   = 2021120600;
 $plugin->requires  = 2020061501;
 $plugin->maturity  = MATURITY_STABLE;
