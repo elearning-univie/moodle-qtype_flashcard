@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Multiple choice question renderer classes.
+ * Flashcard question renderer classes.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna

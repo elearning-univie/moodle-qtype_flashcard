@@ -19,6 +19,7 @@
  *
  * @package    qtype_flashcard
  * @author     Adrian Czermak
+ * @author     Jakob Mischke
  * @author     Thomas Wedekind
  * @copyright  2020 University of vienna
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,6 +28,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_flashcard';
-$plugin->version   = 2021120600;
-$plugin->requires  = 2020061501;
+$plugin->version   = 2022080100;
+$plugin->requires  = 2020110900;
+$plugin->release   = '4.0.0';
 $plugin->maturity  = MATURITY_STABLE;

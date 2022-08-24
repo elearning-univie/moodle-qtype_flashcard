@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Multiple choice question definition classes.
+ * Flashcard question definition classes.
  *
  * @package    qtype_flashcard
  * @copyright  2020 University of vienna
@@ -100,7 +100,6 @@ class qtype_flashcard_question extends question_graded_automatically {
         $a->answerformat = FORMAT_HTML;
         $a->fraction = 0;
         $this->answer = $this->qtype->make_answer($a);
-
     }
 
     /**
