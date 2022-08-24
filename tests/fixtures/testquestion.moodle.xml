@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+    <!-- question: 0  -->
+    <question type="category">
+        <category>
+            <text>$course$/Default for C1</text>
+
+        </category>
+    </question>
+
+    <!-- question: 114000  -->
+    <question type="flashcard">
+        <name>
+            <text>flashcard-001</text>
+        </name>
+        <questiontext format="html">
+            <text>This is the question text of Flashcard-01.</text>
+        </questiontext>
+        <generalfeedback format="html">
+            <text>General feedback of Flashcard-01.</text>
+        </generalfeedback>
+        <defaultgrade>1.0000000</defaultgrade>
+        <hidden>0</hidden>
+        <answer fraction="0" format="html">
+            <text>This is the answer text of Flashcard-01.</text>
+        </answer>
+    </question>
+</quiz>

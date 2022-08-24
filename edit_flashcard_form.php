@@ -96,13 +96,13 @@ class qtype_flashcard_edit_form extends question_edit_form {
                 // Prepare the feedback editor to display files in draft area.
                 $draftitemid = file_get_submitted_draft_itemid('answer');
                 $question->answer['text'] = file_prepare_draft_area(
-                        $draftitemid,          // Draftid
-                        $this->context->id,    // context
-                        'question',            // component
-                        'answer',              // filarea
-                        !empty($answer->id) ? (int) $answer->id : null, // itemid
-                        $this->fileoptions,    // options
-                        $answer->answer        // text.
+                        $draftitemid,
+                        $this->context->id,
+                        'question',
+                        'answer',
+                        !empty($answer->id) ? (int) $answer->id : null,
+                        $this->fileoptions,
+                        $answer->answer
                 );
                 $question->answer['itemid'] = $draftitemid;
                 $question->answer['format'] = $answer->answerformat;
